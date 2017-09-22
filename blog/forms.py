@@ -25,7 +25,6 @@ class ChangePassword(forms.ModelForm):
 	def clean_old(self):
 		old=self.cleaned_data.get('old')
 		username=self.cleaned_data.get('username')
-		print username,old
 		new_user=authenticate(username=username,password=old)
 		if new_user is None:
 	 		raise forms.ValidationError("Incorrect Password")
