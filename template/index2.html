@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block jumbo %}
+{% include "header.html" %}
+<div class="bg">
+	<a id="bottom_hold" href="#ist">
+		<i id="scroll_img" class="fa fa-angle-double-down fa-5x img-responsive image" aria-hidden="true"></i>
+	</a>
+</div>
+<div style="margin-bottom: 100px" id='ist'></div>
+<div class="container">
+	<div class="row" id="2nd">
+		<div class='col-sm-6'> 
+			<i class="fa fa-gift s" aria-hidden="true"></i>
+		</div>
+		<div class='col-sm-6 pull-right'>
+			<p class='lead text-align-center'>What's New?</p><br/> 
+			<div class="item">
+				<p><b>{{articles.title}}</b></p>
+				<p>{{articles.body|truncatewords:30}}</p>
+				<a href="{{articles.get_absolute_url}}">read more...</a>
+			</div>
+		</div>
+		<hr>
+	</div>	
+	<div class="row " id="3nd">	
+		<div class='col-sm-6 pull-right'>
+			<i class="fa fa-laptop s" aria-hidden="true"></i>
+		</div>
+		<div class='col-sm-6 pull-left'>
+			<p class='lead text-align-center'>Coding</p><br/> 
+			<p>hello gfasfgsdffasdfasf asgdsf gsagds</p>
+		</div>
+		<hr>
+	</div>
+	<div class="row " id="4nd">
+		<div class='col-sm-6'>
+			<i class="fa fa-cog s" aria-hidden="true"></i>
+		</div>
+		<div class='col-sm-6 pull-right'>
+			<p class='lead text-align-center'>Web Development</p><br/> 
+			<p>hello gfasfgsdffasdfasf asgdsf gsagds</p>
+		</div>
+	</div>
+</div>
+{% endblock %}

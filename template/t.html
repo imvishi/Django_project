@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+		<meta charset="utf-8">
+	<meta "viewport" content="width=device-width,initial-scale=1">
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<script>
+		$(document).ready(function(){
+  $('#sub1').click(function(){
+  showpopup2();
+  //return false;
+  });   
+});
+
+$(document).ready(function(){
+  $('#sub2').click(function(){
+  showpopup1();
+  //return false;
+  });   
+});
+
+$(document).ready(function(){
+	$('#show_signin').click(function(){
+	showpopup1();
+	//return false;
+	});		
+});
+
+
+$(document).ready(function(){
+  $('#show_signinback').click(function(){
+  showpopup1();
+  //return false;
+  });   
+});
+
+
+function showpopup2()
+{
+   $("#loginform").fadeIn();
+   $("#signupform").fadeOut();
+    $("#signupform").css({"visibility":"hidden","display":"none"});
+    $("#loginform").css({"visibility":"visible","display":"block"});
+    // $('.dropdown-menu').slideDown();
+    $('myDropDown *').click(function(e) {
+    e.stopPropagation();
+});
+}
+
+function showpopup1()
+{
+   $("#loginform").fadeIn();
+   $("#signupform").fadeOut();
+    $("#signupform").css({"visibility":"hidden","display":"none"});
+    $("#loginform").css({"visibility":"visible","display":"block"});
+    $('.dropdown-menu').click(function(e) {
+    e.stopPropagation();
+});
+}
+
+$(document).ready(function(){
+	$('#show_signup').click(function(){
+	showpopup();
+	//return false;
+	});		
+});
+function showpopup()
+{
+   $("#loginform").fadeOut();
+   $("#signupform").fadeIn();
+    $("#loginform").css({"visibility":"hidden","display":"none"});
+   $("#signupform").css({"visibility":"visible","display":"block"});
+   $('.dropdown-menu').click(function(e) {
+    e.stopPropagation();
+});
+}
+
+	</script>
+</head>
+<body>
+<nav  id="navbar-main" class="nav navbar-default navbar-fixed-top ">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="{% url 'home' %}">
+          <img alt="vishi" src="{% url 'home' %}">
+      </a>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="{% url 'home' %}">HOME</a></li>
+        <li ><a href="{% url 'articles' %}">ARTICLES</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">CONTACT US</a></li>
+        <li class="dropdown" id="myDropDown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="show_signin">SIGN IN</a>
+            <ul class="dropdown-menu" style="width:400px ;padding:15px">
+                <div id ="loginform">
+                    <div class="row">
+                        <h1> Sign In</h1>
+                        <div class="col-md-12 col-xs-12 col-sm-12">
+                            <form method='POST' action=''>{%csrf_token %}
+                                  <input type ='submit' name='signinsubmit' value ='SIGN IN' class="btn btn-primary"/>
+                            </form>
+                        </div>  
+                    </div>
+                    <a href ="#signup" id="show_signup">Need an Account ?</a>
+                    <a href ="#signup">Forgot Password ?</a>  
+                </div>
+                <div id ="signupform">
+                    <div class="row">
+                        <h1>Sign Up</h1>
+                        <div class="col-md-12 col-xs-12 col-sm-12">
+                              <form method='POST' action=''>{%csrf_token %}
+                                    <input type ='submit' name='signupsubmit' value ='SIGN UP' class="btn btn-primary"/>
+                              </form>
+                        </div>
+                    </div>
+                    <a href ="#signup" id="show_signinback">Already have Account?</a>
+                </div>
+            </ul> 
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+</body>
+</html>

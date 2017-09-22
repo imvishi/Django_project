@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load staticfiles %}
+{% block jumbo %}
+{% include "header1.html" %}
+<div style="margin-bottom: 100px" id='ist'></div>
+<div class="container" style="margin-bottom:100px">
+	<h1>Contact Us</h1>
+	<form method='POST' action=''>{%csrf_token %}
+        {{contactus| crispy }}<br>
+        <button type="submit" name="contactsubmit" class="btn btn-success">Submit</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,89 @@
+{% load crispy_forms_tags %}
+{% load staticfiles %}
+<nav  id="navbar-main" class="navbar-fixed-top ">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="{% url 'home' %}">
+          <img alt="vishi" src="{% url 'home' %}">
+      </a>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="{% url 'home' %}">HOME</a></li>
+        <li ><a href="{% url 'articles' %}">ARTICLES</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="{% url 'contact' %}">CONTACT US</a></li>
+      {% if user.is_authenticated %}
+      <li><i class="fa fa-user fa-2x" aria-hidden="true"></i></li>
+        <li class="dropdown" id="myDropDown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="show_signout"> WELCOME {{request.user}}</a>
+          <ul class="dropdown-menu"  style="padding: 15px">
+              <div id="logoutform">
+                  <form method='POST' action=''>{%csrf_token %}
+                    <input type ='submit' name='logout' value ='SIGN OUT' class="btn btn-primary"/>
+                  </form>
+                  <hr>
+                  <a href ="#changepassword" id="change_pass">change password</a>
+              </div>
+              <div id='passchangeform'>
+                  <div class="row">
+                  <h1>Change Password</h1>
+                  <div class="col-md-12 col-xs-12 col-sm-12">
+                      <form method='POST' action=''>{%csrf_token %}
+                        {{Changepasswordform|crispy }}
+                        <input type ='submit' name='passwordchange' value ='Change Password' class="btn btn-primary"/>
+                      </form>
+                  </div>
+                  </div>
+              </div>
+          </ul>
+        </li>
+      {% else %}
+        <li class="dropdown" id="myDropDown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="show_signin">SIGN IN</a>
+            <ul class="dropdown-menu" style="width:400px ;padding:15px" >
+                <div id ="loginform">
+                    <div class="row">
+                        <h1> Sign In</h1>
+                        <div class="col-md-12 col-xs-12 col-sm-12">
+                            <form method='POST' action=''>{%csrf_token %}
+                                  {{Signinform|crispy }}
+                                  <input type ='submit' name='signinsubmit' value ='SIGN IN' class="btn btn-primary"/>
+                            </form>
+                        </div>  
+                    </div>
+                    <a href ="#signup" id="show_signup">Need an Account ?</a>
+                    <a href ="#signup">Forgot Password ?</a>
+                    <hr>
+                    <h4 align="middle"><small>Or Connect with:</small></h4>
+                    <a href="{% url "social:begin" "google-oauth2" %}"><img width="170" height="50"src="{% static "img/google.png" %}" alt="Google+" /></a>
+                    <a href="{% url "social:begin" "facebook" %}"><img width="170" height="45" style="margin-left:10px" src="{% static "img/facebook.png" %}" alt="Login with Facebook" /></a>
+                </div>
+                <div id ="signupform">
+                    <div class="row">
+                        <h1>Sign Up</h1>
+                        <div class="col-md-12 col-xs-12 col-sm-12">
+                              <form method='POST' action=''>{%csrf_token %}
+                                  {{Signupform|crispy }}
+                                  <input type ='submit' name='signupsubmit' value ='SIGN UP' class="btn btn-primary"/>
+                              </form>
+                        </div>
+                    </div>
+                    <a href ="#signup" id="show_signinback">Already have Account?</a>
+                </div>
+            </ul> 
+        </li>
+      {% endif %}
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>

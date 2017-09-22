@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load staticfiles %}
+{% block jumbo %}
+{% include "header1.html" %}
+<div style="margin-top: 100px">
+<div class="container-fluid">
+  <div class="row content">
+    <div class="col-sm-3 sidenav">
+      	<h4>Topics</h4>
+      	<ul class="nav nav-pills nav-stacked">
+      	{%if article_page %}
+        	{%for articles in article_page%}
+        	<li >
+            	<a href="{{articles.get_absolute_url}}">{{articles.title}}</a>
+        	</li>
+        	{%endfor%}
+        </ul>
+      	{%else%}
+        	<p>there are no post</p>
+        {%endif%}
+      	<br>
+        <nav>
+          <ul class="pager">
+            {% if article_page.has_previous %}
+            <li><a href="?page={{ article_page.previous_page_number }}">Previous</a></li>
+            {% endif %}
+            {%if article_page.has_next%}
+            <li><a href="?page={{ article_page.next_page_number }}">Next</a></li>
+            {%endif%}
+          </ul>
+        </nav>
+    </div>
+
+    <div class="col-sm-9">
+      <h4><small>Articles</small></h4>
+      <hr>
+      <h2>{{articles.title}}</h2>
+      <h5><span class="glyphicon glyphicon-time"></span> Posted on {{articles.posted}}</h5><br>
+      <p style="white-space: pre;">{{articles.body|safe}}.</p>
+      <br><hr><br>
+      <h4>Leave a Comment:</h4>
+      {% if user.is_authenticated %}
+            <br><form method='POST' action=''>{%csrf_token %}
+                {{commentform| crispy }}<br>
+                <button type="submit" name="commentsubmit" class="btn btn-success">Submit</button>
+            </form>
+      		<br>
+      {%else%}
+      <h4>SignIn before start the discussion</h4><br>
+      {%endif%}
+      <p><span class="badge">{{count}}</span> Comments:</p><br>
+      {%if comment_page%}
+      	{%for c in comment_page%}
+      		<div class="row">
+        		<div class="col-sm-2 text-center">
+          			<i class="fa fa-user fa-2x" aria-hidden="true"></i>
+        		</div>
+        		<div class="col-sm-10">
+          			<h4>{{c.user}} <br><span class="glyphicon glyphicon-time"></span>  <small>{{c.posted}}</small></h4>
+          			<p style="white-space: pre;">{{c.comment}}</p>
+ 		         	<br>
+        		</div>
+      		</div>
+      	{%endfor%}
+      {%else%}
+        <p>Be the first to comment.</p>
+      {%endif%}
+        <nav>
+          <ul class="pager">
+            {% if comment_page.has_previous %}
+            <li><a href="?page2={{ comment_page.previous_page_number }}">Previous</a></li>
+            {% endif %}
+            {%if comment_page.has_next%}
+            <li><a href="?page2={{ comment_page.next_page_number }}">Next</a></li>
+            {%endif%}
+          </ul>
+        </nav>
+    </div>
+  </div>
+</div>
+{% endblock %}
