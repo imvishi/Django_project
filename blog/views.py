@@ -52,9 +52,7 @@ def contact(request):
 				new2=request.POST.get("newpass2",False)
 				new_user=authenticate(username=request.user,password=old)
 				u=User.objects.get(username=request.user)
-				print new_user
 				if new_user is not None:
-					print u
 					u.set_password(new2)
 				u.save()
 			Signupform=SignUpForm()
@@ -131,9 +129,7 @@ def index(request,slug=topics.latest('posted').slug):
 				new2=request.POST.get("newpass2",False)
 				new_user=authenticate(username=request.user,password=old)
 				u=User.objects.get(username=request.user)
-				print new_user
 				if new_user is not None:
-					print u
 					u.set_password(new2)
 				u.save()
 			Signupform=SignUpForm()
@@ -213,9 +209,7 @@ def topic(request,slug=topics.latest('posted').slug):
 				new2=request.POST.get("newpass2",False)
 				new_user=authenticate(username=request.user,password=old)
 				u=User.objects.get(username=request.user)
-				print new_user
 				if new_user is not None:
-					print u
 					u.set_password(new2)
 				u.save()	
 			Signupform=SignUpForm()
