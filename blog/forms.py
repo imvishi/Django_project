@@ -27,21 +27,21 @@ class ChangePassword(forms.ModelForm):
 		username=self.cleaned_data.get('username')
 		new_user=authenticate(username=username,password=old)
 		if new_user is None:
-	 		raise forms.ValidationError("Incorrect Password")
-	 	else:
-			return old
+			raise forms.ValidationError("Incorrect Password")
+		else:
+			return old;
 	def clean_newpass(self):
 		global rep
 		rep=self.cleaned_data.get('newpass')
 		if len(rep)<5:
-	 		raise forms.ValidationError("weak password ")
+			raise forms.ValidationError("weak password ")
 		return rep
 	def clean_newpass2(self):
-	 	repassword=self.cleaned_data.get('newpass2')
-	 	global rep;
-	 	if(repassword!=rep):
-	 	 	raise forms.ValidationError("password not same")
-	 	return repassword
+		repassword=self.cleaned_data.get('newpass2')
+		global rep;
+		if(repassword!=rep):
+			raise forms.ValidationError("password not same")
+		return repassword
 
 
 class SignUpForm(forms.ModelForm):
@@ -73,16 +73,16 @@ class SignUpForm(forms.ModelForm):
 		global rep
 		rep=self.cleaned_data.get('password')
 		if len(rep)<5:
-	 		raise forms.ValidationError("weak password ")
+			raise forms.ValidationError("weak password ")
 		return rep
 	def clean_repassword(self):
-	 	repassword=self.cleaned_data.get('repassword')
-	 	global rep;
-	 	if(repassword!=rep):
-	 	 	raise forms.ValidationError("password not same")
-	 	return repassword
+		repassword=self.cleaned_data.get('repassword')
+		global rep;
+		if(repassword!=rep):
+			raise forms.ValidationError("password not same")
+		return repassword
 
-	 	
+		
 class SignInForm(forms.ModelForm):
 	password=forms.CharField(widget=forms.PasswordInput)
 	username = forms.CharField(label='username')
@@ -105,8 +105,8 @@ class SignInForm(forms.ModelForm):
 		if user is not None:
 			new_user=authenticate(username=user,password=passw)
 		if new_user is None:
-	 		raise forms.ValidationError("Incorrect Password")
-	 	else:
+			raise forms.ValidationError("Incorrect Password")
+		else:
 			return passw
 class CommentForm(forms.ModelForm):
 	comment= forms.CharField(label="",widget=forms.Textarea(attrs={'cols': 100, 'rows': 4}))
