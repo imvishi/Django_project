@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '!lvxjtlrjmq_cy#f%f^=%0km-j*-ar$o32p%zn-@10^o7a(1ym'
+SECRET_KEY =  os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -162,11 +162,11 @@ CRISPY_TEMPLATE_PACK='bootstrap3'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '480421557946-nokj0r3lq32a8imln42lol8s4m0r54pd.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'dz1nDrPVp8_d6_-Ni8p7hBNE'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = SECRET_KEY =  os.environ.get('SOCIAL_AUTH_GOOGLE_OAUTH2_KEY')
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.environ.get('SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET')
 
-SOCIAL_AUTH_FACEBOOK_KEY ='698087547048505'
-SOCIAL_AUTH_FACEBOOK_SECRET ='fedd906c4e75746c8e5f07d4521ef448'
+SOCIAL_AUTH_FACEBOOK_KEY =os.environ.get('SOCIAL_AUTH_FACEBOOK_KEY')
+SOCIAL_AUTH_FACEBOOK_SECRET =os.environ.get('SOCIAL_AUTH_FACEBOOK_SECRET')
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
 LOGIN_REDIRECT_URL = 'home'
